@@ -9,67 +9,49 @@ import {
 } from 'react-native';
 import LottieView from 'lottie-react-native';
 
-import {CustomButton, CustomInput, CustomText} from '../../components';
-import {COLORS} from '../../constants/colors';
+import {CustomButton, CustomText} from '../../components';
+
 import {useNavigation} from '@react-navigation/native';
 import {IMAGES} from '../../assets/images';
-import {FONTSIZE} from '../../constants';
+import {COLORS, FONTS, FONTSIZE, STRINGS} from '../../constants';
 
 const {width} = Dimensions.get('screen');
 
-const Login = () => {
+const Welcome = () => {
   const navigation = useNavigation();
 
-  const handleLogin = () => {
-    navigation.navigate('Home');
+  const onSignIn = () => {
+    navigation.navigate('Login');
   };
 
-  const handleSignup = () => {
+  const handleCreateAccount = () => {
     navigation.navigate('Signup');
   };
 
-  const renderIcon = (imagePath: string) => {
-    return (
-      <Image source={imagePath} resizeMode="contain" style={{height: 18}} />
-    );
-  };
   return (
     <ImageBackground
       style={styles.mainContainer}
-      source={IMAGES.WELCOME}
+      source={IMAGES.SIGN_IN}
       resizeMode="cover">
-      <CustomText style={styles.welcomeBack}>Welcome Back !</CustomText>
-
       <View style={styles.lottieContainer}>
         <LottieView
           style={styles.lottieImageStyle}
-          source={require('../../assets/lottieAnimations/girlWaling1.json')}
+          source={require('../../assets/lottieAnimations/girl_Walking.json')}
           autoPlay
+          speed={0.7}
+          loop
         />
       </View>
-
-      <CustomInput
-        containerStyle={styles.inputContainerStyle}
-        iconComponent={renderIcon(IMAGES.USER_ICON)}
-        placeholder="Email"
-        style={styles.inputTextStyle}
-      />
-      <CustomInput
-        containerStyle={styles.inputContainerStyle}
-        iconComponent={renderIcon(IMAGES.LOCK_ICON)}
-        placeholder="Password"
-        style={styles.inputTextStyle}
-      />
-
+      <CustomText style={styles.welcomeText}>{STRINGS.WELCOME_TEXT}</CustomText>
       <CustomButton
         title="Sign In"
         style={styles.buttonStyle}
-        onPress={handleLogin}
+        onPress={onSignIn}
       />
       <TouchableOpacity
         style={styles.createAccountContainer}
-        onPress={handleSignup}>
-        <CustomText style={styles.createAccountText}>Signup</CustomText>
+        onPress={handleCreateAccount}>
+        <CustomText style={styles.createAccountText}>Create Account</CustomText>
         <Image
           source={IMAGES.ARROW_ICON}
           style={{height: 20}}
@@ -83,24 +65,25 @@ const Login = () => {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
+    position: 'relative',
     paddingHorizontal: 20,
   },
   lottieContainer: {
-    marginTop: -20,
-    width: width * 0.9,
+    marginTop: 70,
+    width: width,
     height: width,
+    marginLeft: -90,
   },
   lottieImageStyle: {
     flex: 1,
   },
-  inputContainerStyle: {
-    borderWidth: 0,
-    borderBottomWidth: 1,
-    marginBottom: 20,
+  welcomeText: {
+    fontSize: FONTSIZE.FONT28,
+    color: COLORS.FADE_WHITE,
+    paddingHorizontal: 10,
+    textAlign: 'left',
+    fontFamily: FONTS.InterThin,
   },
-
-  inputTextStyle: {color: COLORS.FADE_WHITE, marginLeft: 10, paddingBottom: 0},
-
   buttonStyle: {backgroundColor: COLORS.PRIMARY_RED, height: 50, marginTop: 50},
   createAccountContainer: {
     flexDirection: 'row',
@@ -108,9 +91,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 20,
   },
-
-  welcomeBack: {color: COLORS.WHITE, fontSize: FONTSIZE.FONT25, marginTop: 70},
   createAccountText: {color: COLORS.FADE_WHITE, fontSize: FONTSIZE.FONT18},
 });
 
-export default Login;
+export default Welcome;

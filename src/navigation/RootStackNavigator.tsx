@@ -6,6 +6,7 @@ import {
 import Home from '../screens/home/HomeScreen';
 import Login from '../screens/auth/Login';
 import Signup from '../screens/auth/Signup';
+import Welcome from '../screens/auth/Welcome';
 
 const Stack = createStackNavigator();
 
@@ -15,6 +16,15 @@ export default function RootStackNavigator() {
       screenOptions={{
         presentation: 'modal',
       }}>
+      <Stack.Screen
+        name="Welcome"
+        component={Welcome}
+        // screenOptions={{animation: 'none'}}
+        options={{
+          headerShown: false,
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}
+      />
       <Stack.Screen
         name="Signup"
         component={Signup}
