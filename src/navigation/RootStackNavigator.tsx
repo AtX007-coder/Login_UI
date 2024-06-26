@@ -6,7 +6,7 @@ import {
 import Home from '../screens/home/HomeScreen';
 import Login from '../screens/auth/Login';
 import Signup from '../screens/auth/Signup';
-import Welcome from '../screens/auth/Welcome';
+import Welcome from '../screens/welcome/Welcome';
 
 const Stack = createStackNavigator();
 
